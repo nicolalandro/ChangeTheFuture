@@ -3,10 +3,15 @@ from django.conf import settings
 
 
 class Story(models.Model):
+    creator_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='stories', on_delete=models.CASCADE)
+
     title = models.CharField(max_length=100)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.creator_user.name}/{self.title}'
 
 
 class Fragment(models.Model):
@@ -32,16 +37,20 @@ class Clue(models.Model):
 
 class Game(models.Model):
     story = models.ForeignKey(Story, related_name='games', on_delete=models.CASCADE)
+    creator_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='games', on_delete=models.CASCADE)
 
     is_running = models.BooleanField(default=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f'{self.creator_user.name}/{self.story.title}({self.id})'
+
 
 class GamePartecipant(models.Model):
     game = models.ForeignKey(Game, related_name='game_partecipants', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='plan_items', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='game_partecipants', on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
