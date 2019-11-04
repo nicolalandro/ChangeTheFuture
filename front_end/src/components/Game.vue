@@ -1,18 +1,29 @@
 <template>
     <section>
         <b-steps has-navigation='true'>
-            <b-step-item label="Londra 2018" clickable="true" type="is-success">
+            <b-step-item label="Londra 2018"
+                         clickable="true"
+                         type="is-success"
+                         icon="numeric-1">
                 <h1 class="title has-text-centered">Londra 2018</h1>
                 <b-button class="is-primary">Rivela</b-button>
                 <br>
                 <br>
                 <b-button type="is-link">Rivela Indizio</b-button>
             </b-step-item>
-            <b-step-item label="Isole Caiman 2019" clickable="ture" type="is-dark">
+            <b-step-item
+                    label="Isole Caiman 2019"
+                    clickable="ture"
+                    type="is-dark"
+                    icon="numeric-2">
                 <h1 class="title has-text-centered">Isole Caiman 2019</h1>
                 Lorem ipsum dolor sit amet.
             </b-step-item>
-            <b-step-item label="Fiorenza 2019" clickable="ture" type="is-danger">
+            <b-step-item
+                    label="Fiorenza 2019"
+                    clickable="ture"
+                    type="is-danger"
+                    icon="numeric-3">
                 <h1 class="title has-text-centered">Isole Caiman 2019</h1>
                 Lorem ipsum dolor sit amet.
             </b-step-item>
@@ -36,7 +47,7 @@
         margin-right: auto;
         left: 0;
         right: 0;
-        top: 10px;
+        top: 70px;
     }
 </style>
 
