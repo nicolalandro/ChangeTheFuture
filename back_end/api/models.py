@@ -10,8 +10,11 @@ class Story(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta(object):
+        unique_together = "creator_user", "title"
+
     def __str__(self):
-        return f'{self.creator_user.name}/{self.title}'
+        return f'{self.creator_user}/{self.title}'
 
 
 class Fragment(models.Model):
@@ -21,9 +24,13 @@ class Fragment(models.Model):
     location = models.CharField(max_length=100)
     date = models.DateTimeField()
     is_ending = models.BooleanField(default=False)
+    order_number = models.PositiveIntegerField()
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'({self.id}) {self.story.creator_user}/{self.story.title}'
 
 
 class Clue(models.Model):
@@ -45,7 +52,7 @@ class Game(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.creator_user.name}/{self.story.title}({self.id})'
+        return f'{self.creator_user}/{self.story.title}({self.id})'
 
 
 class GamePartecipant(models.Model):
