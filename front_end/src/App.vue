@@ -8,7 +8,7 @@
                 </b-navbar-item>
             </template>
             <template slot="start">
-                <b-navbar-item @click="status='game'">
+                <b-navbar-item @click="status='mygames'">
                     My Games
                 </b-navbar-item>
                 <b-navbar-item @click="status='new'">
@@ -16,8 +16,9 @@
                 </b-navbar-item>
             </template>
         </b-navbar>
+        <MyGameList v-if="status == 'mygames'" @go-to-game="status='game'"></MyGameList>
         <GameList v-if="status == 'new'"></GameList>
-        <Game v-if="status == 'game'" msg="test"></Game>
+        <Game v-if="status == 'game'"></Game>
     </div>
 </template>
 
@@ -30,16 +31,17 @@
 
     import Game from './components/Game.vue'
     import GameList from './components/GameList.vue'
+    import MyGameList from './components/MyGameList.vue'
 
 
     export default {
         name: 'app',
         components: {
-            Game, GameList
+            Game, GameList, MyGameList
         },
         data() {
             return {
-                status: 'new'
+                status: 'mygames'
             }
         }
     }

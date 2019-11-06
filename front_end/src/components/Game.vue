@@ -2,7 +2,7 @@
     <section class="game">
         <b-steps has-navigation='true'>
             <b-step-item label="Londra 2018"
-                         clickable="true"
+                         clickable=true
                          type="is-success"
                          icon="ray-start-arrow">
                 <h1 class="title has-text-centered">Londra 2018</h1>
@@ -13,7 +13,7 @@
             </b-step-item>
             <b-step-item
                     label="Isole Caiman 2019"
-                    clickable="ture"
+                    clickable=ture
                     type="is-dark"
                     icon="ray-vertex">
                 <h1 class="title has-text-centered">Isole Caiman 2019</h1>
@@ -21,7 +21,7 @@
             </b-step-item>
             <b-step-item
                     label="Fiorenza 2019"
-                    clickable="ture"
+                    clickable=ture
                     type="is-danger"
                     icon="ray-end-arrow">
                 <h1 class="title has-text-centered">Isole Caiman 2019</h1>
@@ -34,9 +34,6 @@
 <script>
     export default {
         name: 'Game',
-        props: {
-            msg: String
-        }
     }
 </script>
 

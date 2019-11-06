@@ -13,9 +13,7 @@
 
                 <b-dropdown aria-role="list" class="is-pulled-right">
                     <b-icon icon="dots-vertical" slot="trigger" size="is-medium"></b-icon>
-                    <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>
-                    <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>
-                    <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem">Create Game</b-dropdown-item>
                 </b-dropdown>
             </div>
             <b-collapse
