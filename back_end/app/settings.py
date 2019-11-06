@@ -120,3 +120,24 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+if 'HEROKU' in os.environ:
+    from environs import Env
+    import dj_database_url
+    import django_heroku
+
+    env = Env()
+    django_heroku.settings(locals())
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+    DATABASES['default'].update(dj_database_url.config(
+        env='DATABASE_URL',
+        conn_max_age=env.int('DATABASE_CONN_MAX_AGE', 500),
+        ssl_require=True,
+    ))
+    ALLOWED_HOSTS = ['*']

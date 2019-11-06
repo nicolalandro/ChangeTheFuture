@@ -1,3 +1,6 @@
 django
 graphene-django
 django-graphiql
+django_heroku
+gunicorn
+environs
