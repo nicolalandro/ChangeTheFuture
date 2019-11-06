@@ -1,24 +1,31 @@
 <template>
     <section>
-        <b-menu>
-            <b-menu-list label="Menu">
-                <b-menu-item v-for="story in stories"
-                             @click="story.isActive=!story.isActive"
-                             :expanded="story.isActive"
-                             :key="story.id">
-                    <template slot="label">
-                        {{ story.name }}
-                        <b-icon
-                                class="is-pulled-right"
-                                :icon="!story.isActive ? 'menu-down' : 'menu-up'">
-                        </b-icon>
-                    </template>
-                    <b-menu-item label="Londra 2018"></b-menu-item>
-                    <b-menu-item label="Isole Caiman 2019"></b-menu-item>
-                    <b-menu-item label="Fiorena 2019"></b-menu-item>
-                </b-menu-item>
-            </b-menu-list>
-        </b-menu>
+        <div v-for="story in stories" :key="story.id">
+            <div class="notification" style="margin-bottom: 5px">
+                {{ story.name }}
+                <span @click="story.isActive=!story.isActive">
+                    <b-icon
+                            class="is-pulled-right"
+                            :icon="!story.isActive ? 'menu-down' : 'menu-up'"
+                            size="is-medium">
+                    </b-icon>
+                </span>
+
+                <b-dropdown aria-role="list" class="is-pulled-right">
+                    <b-icon icon="dots-vertical" slot="trigger" size="is-medium"></b-icon>
+                    <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>
+                </b-dropdown>
+            </div>
+            <b-collapse
+                    :open.sync="story.isActive"
+                    :key="story.id">
+                <div class="panel-tabs">Londra 2018</div>
+                <div class="panel-tabs">Isole Caiman 2019</div>
+                <div class="panel-tabs">Fiorena 2019</div>
+            </b-collapse>
+        </div>
     </section>
 </template>
 
