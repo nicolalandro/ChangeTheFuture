@@ -22,8 +22,8 @@ class ClueAdmin(admin.ModelAdmin):
     list_display = ['id', 'fragment', 'fragment__story']
     search_fields = ['fragment__story']
 
-    def fragment__story(self):
-        return self.fragment.story
+    def fragment__story(self, obj):
+        return obj.fragment.story
 
 
 admin.site.register(Clue, ClueAdmin)
