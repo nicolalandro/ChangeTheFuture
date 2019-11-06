@@ -8,15 +8,16 @@
                 </b-navbar-item>
             </template>
             <template slot="start">
-                <b-navbar-item href="#">
+                <b-navbar-item @click="status='game'">
                     My Games
                 </b-navbar-item>
-                <b-navbar-item href="#">
+                <b-navbar-item @click="status='new'">
                     New
                 </b-navbar-item>
             </template>
         </b-navbar>
-        <Game msg="test"></Game>
+        <GameList v-if="status == 'new'"></GameList>
+        <Game v-if="status == 'game'" msg="test"></Game>
     </div>
 </template>
 
@@ -28,11 +29,18 @@
     Vue.use(Buefy)
 
     import Game from './components/Game.vue'
+    import GameList from './components/GameList.vue'
+
 
     export default {
         name: 'app',
         components: {
-            Game
+            Game, GameList
+        },
+        data() {
+            return {
+                status: 'new'
+            }
         }
     }
 </script>
@@ -45,9 +53,5 @@
         text-align: center;
         color: #2c3e50;
         /*margin-top: 60px;*/
-    }
-
-    .navbar-custom {
-        margin-bottom: 60px;
     }
 </style>

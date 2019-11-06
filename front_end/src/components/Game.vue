@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="game">
         <b-steps has-navigation='true'>
             <b-step-item label="Londra 2018"
                          clickable="true"
@@ -48,6 +48,10 @@
         left: 0;
         right: 0;
         top: 70px;
+    }
+
+    .game {
+        margin-top: 60px;
     }
 </style>
 
