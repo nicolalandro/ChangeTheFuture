@@ -27,7 +27,7 @@ cd back_end
 * Python
 ## Libraries
 * [Django](https://docs.djangoproject.com/en/2.2/intro/tutorial01/)
-* GraphQL and Graphene
+* [GraphQL](https://graphql.org/) and [Graphene](https://github.com/graphql-python/graphene-django)
 * [vue.js](https://vuejs.org/)
 * [vue-cli](https://cli.vuejs.org/guide/)
 * [Bulma](https://bulma.io/) and [Buefy](https://buefy.org/)
