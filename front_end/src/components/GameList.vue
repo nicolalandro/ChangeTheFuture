@@ -2,11 +2,11 @@
     <section>
         <div v-for="story in stories" :key="story.id">
             <div class="notification" style="margin-bottom: 5px">
-                {{ story.name }}
-                <span @click="story.isActive=!story.isActive">
+                {{ story.title }}
+                <span @click="visible=! (story.id === visible) ? story.id : ''">
                     <b-icon
                             class="is-pulled-right"
-                            :icon="!story.isActive ? 'menu-down' : 'menu-up'"
+                            :icon="! (story.id === visible) ? 'menu-down' : 'menu-up'"
                             size="is-medium">
                     </b-icon>
                 </span>
@@ -17,26 +17,41 @@
                 </b-dropdown>
             </div>
             <b-collapse
-                    :open.sync="story.isActive"
+                    :open.sync="story.id === visible"
                     :key="story.id">
-                <div class="panel-tabs">Londra 2018</div>
-                <div class="panel-tabs">Isole Caiman 2019</div>
-                <div class="panel-tabs">Fiorena 2019</div>
+                <div :key="fragment.id" v-for="fragment in story.fragments" class="panel-tabs">
+                    {{ fragment.location }} {{ fragment.date }}
+                </div>
             </b-collapse>
         </div>
     </section>
 </template>
 
 <script>
+    import axios from '../axios.js'
+
     export default {
         name: 'GameList',
         data() {
             return {
-                stories: [
-                    {isActive: false, name: 'Game 1', id: '123'},
-                    {isActive: false, name: 'Game 2', id: '124'}
-                ],
+                stories: [],
+                visible: ''
             }
+        },
+        created() {
+            axios.post(
+                '/api/',
+                'query{stories{id,title,fragments{id,location,date}}}',
+                {
+                    headers: {
+                        'Content-Type': 'application/graphql'
+                    }
+                }
+            ).then((response) => {
+                this.stories = response.data['data']['stories']
+            }).catch((error) => {
+                this.msg = 'Error: ' + error
+            });
         }
     }
 </script>

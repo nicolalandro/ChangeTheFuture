@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 GRAPHENE = {
     'SCHEMA': 'api.schema.schema'
 }
+APPEND_SLASH = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -140,4 +141,4 @@ if 'HEROKU' in os.environ:
         conn_max_age=env.int('DATABASE_CONN_MAX_AGE', 500),
         ssl_require=True,
     ))
-    ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
