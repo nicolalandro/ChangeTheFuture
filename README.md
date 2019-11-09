@@ -32,3 +32,4 @@ cd back_end
 * [vue-cli](https://cli.vuejs.org/guide/)
 * [Bulma](https://bulma.io/) and [Buefy](https://buefy.org/)
 * [Material Design Icon](https://cdn.materialdesignicons.com/3.5.95/)
+* [axios](https://github.com/axios/axios)
