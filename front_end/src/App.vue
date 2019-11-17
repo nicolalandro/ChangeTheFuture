@@ -17,8 +17,19 @@
             </template>
         </b-navbar>
         <MyGameList v-if="status == 'mygames'" @go-to-game="status='game'"></MyGameList>
-        <GameList v-if="status == 'new'"></GameList>
+        <GameList v-if="status == 'new'" @error="addErrorMessage"></GameList>
         <Game v-if="status == 'game'"></Game>
+        <section id="error-message-area">
+            <b-notification
+                    v-for="m in notificationMessages"
+                    :key="m.message"
+                    :type="m.type"
+                    aria-close-label="Close notification"
+                    role="alert"
+                    style="margin-bottom: 5px">
+                {{ m.message }}
+            </b-notification>
+        </section>
     </div>
 </template>
 
@@ -41,7 +52,16 @@
         },
         data() {
             return {
-                status: 'mygames'
+                status: 'mygames',
+                notificationMessages: []
+            }
+        },
+        methods: {
+            addErrorMessage(type, message) {
+                this.notificationMessages.push({
+                    type: type,
+                    message: message
+                })
             }
         }
     }
@@ -55,5 +75,11 @@
         text-align: center;
         color: #2c3e50;
         /*margin-top: 60px;*/
+    }
+
+    #error-message-area {
+        position: fixed;
+        bottom: 5px;
+        right: 5px;
     }
 </style>
